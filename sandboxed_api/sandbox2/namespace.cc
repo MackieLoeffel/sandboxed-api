@@ -108,8 +108,8 @@ void ActivateLoopbackInterface() {
   ifreq.ifr_flags = 0;
   strncpy(ifreq.ifr_name, "lo", IFNAMSIZ);
 
-  // Create an AF_INET6 socket to perform the IF FLAGS ioctls on.
-  int fd = socket(AF_INET6, SOCK_DGRAM, 0);
+  // Create an AF_INET socket to perform the IF FLAGS ioctls on.
+  int fd = socket(AF_INET, SOCK_DGRAM, 0);
   SAPI_RAW_PCHECK(fd != -1, "creating socket for activating loopback failed");
 
   file_util::fileops::FDCloser fd_closer{fd};
