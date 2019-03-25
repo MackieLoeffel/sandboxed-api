@@ -1,0 +1,52 @@
+load("//sandboxed_api/bazel:sapi.bzl", "sapi_library")
+
+cc_library(
+    name = "speedtest1-lib",
+    srcs = ["lib.cc", "sqlite3.c", "sqlite3.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+         "//sandboxed_api:lenval_core"
+    ],
+    alwayslink = 1,  # All functions are linked into dependent binaries
+)
+
+sapi_library(
+    name = "speedtest1-lib-sapi",
+    srcs = [],
+    hdrs = ["sandbox.h"],
+    embed = True,
+    functions = [
+      "nop",
+      "hello_world",
+      "reset_random_s",
+      "sqlite3_exec_s",
+      "sqlite3_prepare_v2_s",
+      "sqlite3_stmt",
+      "sqlite3_step_s",
+      "sqlite3_step_s",
+      "sqlite3_stmt",
+      "sqlite3_column_count_s",
+      "sqlite3_stmt",
+      "sqlite3_column_text_s",
+      "sqlite3_stmt",
+      "sqlite3_bind_int_s",
+      "sqlite3_stmt",
+      "sqlite3_bind_int64_s",
+      "sqlite3_stmt",
+      "sqlite3_bind_text_s",
+      "sqlite3_stmt",
+      "sqlite3_reset_s",
+      "sqlite3_stmt",
+      "sqlite3_finalize_s",
+      "sqlite3_stmt",
+      "sqlite3_close_s",
+      "sqlite3_open_s",
+    ],
+    input_files = [
+        "lib.cc", "sqlite3.c"
+    ],
+    lib = ":speedtest1-lib",
+    lib_name = "Speedtest1",
+    namespace = "",
+    visibility = ["//visibility:public"],
+)

@@ -259,3 +259,4 @@ TEST(SandboxTest, NoRaceInAwaitResult) {
 
 }  // namespace
 }  // namespace sapi
+BENCHMARK_MAIN();

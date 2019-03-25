@@ -1,0 +1,15 @@
+cc_binary(
+    name = "speedtest1-sapi",
+    srcs = ["speedtest1-sapi.cc", "speedtest1.c", "sqlite3.c", "sqlite3.h"],
+    linkopts = ["-ldl"],
+    copts = ["-Wno-strict-aliasing"],
+    tags = ["local"],
+    deps = [
+        "//sandboxed_api/examples/speedtest1/lib:speedtest1-lib-sapi",
+        "//sandboxed_api:sapi",
+        "//sandboxed_api:vars",
+        "//sandboxed_api/util:flag",
+        "//sandboxed_api/util:status",
+        "@com_google_absl//absl/time",
+    ],
+)
